@@ -27,10 +27,11 @@
 </template>
 
 <script setup>
-console.log(useRoute().path)
+const basePath = process.env.BASE_URL || '/';
+const fullPath = `${basePath}${useRoute().path}`;
 const getPost = async () => {
   const { data } = await useAsyncData("posts", () =>
-    queryContent(useRoute().path).findOne(),
+    queryContent(fullPath).findOne(),
   );
   return data;
 };
