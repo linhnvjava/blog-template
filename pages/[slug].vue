@@ -28,8 +28,10 @@
 
 <script setup>
 const getPost = async () => {
+  const route = useRoute();
+  const slug = route.params.slug; // Lấy "slug" từ params
   const { data } = await useAsyncData("posts", () =>
-    queryContent(useRoute().path).findOne(),
+    queryContent(`/blog-template/${slug}`).findOne(),
   );
   return data;
 };
