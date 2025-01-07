@@ -27,6 +27,7 @@
 </template>
 
 <script setup>
+console.log(useRoute().path)
 const getPost = async () => {
   const { data } = await useAsyncData("posts", () =>
     queryContent(useRoute().path).findOne(),

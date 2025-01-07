@@ -1,5 +1,7 @@
 export default defineNuxtConfig({
   app: {
+    baseURL: process.env.NODE_ENV === 'production' ? '/blog-template/' : '/',
+    
     head: {
       title: 'Blog',
       titleTemplate: '%s ― Nuxt3 Blog Template',
