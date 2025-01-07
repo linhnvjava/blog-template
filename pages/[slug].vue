@@ -27,11 +27,13 @@
 </template>
 
 <script setup>
+const baseURL = process.env.NUXT_PUBLIC_BASE_URL || '';
+
 const getPost = async () => {
   const route = useRoute();
   const slug = route.params.slug; // Lấy "slug" từ params
   const { data } = await useAsyncData("posts", () =>
-    queryContent().where({ _path: `/blog-template/${slug}` }).findOne(),
+    queryContent().where({ _path: `${baseURL}/${slug}` }).findOne(),
   );
   if (!data.value) {
     throw new Error("Post not found");
