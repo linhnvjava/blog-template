@@ -31,8 +31,11 @@ const getPost = async () => {
   const route = useRoute();
   const slug = route.params.slug; // Lấy "slug" từ params
   const { data } = await useAsyncData("posts", () =>
-    queryContent(`/blog-template/${slug}`).findOne(),
+    queryContent().where({ _path: `/blog-template/${slug}` }).findOne(),
   );
+  if (!data.value) {
+    throw new Error("Post not found");
+  }
   return data;
 };
 
