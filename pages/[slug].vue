@@ -27,11 +27,9 @@
 </template>
 
 <script setup>
-const basePath = process.env.BASE_URL || '/';
-const fullPath = `${basePath}${useRoute().path}`;
 const getPost = async () => {
   const { data } = await useAsyncData("posts", () =>
-    queryContent(fullPath).findOne(),
+    queryContent(useRoute().path).findOne(),
   );
   return data;
 };
